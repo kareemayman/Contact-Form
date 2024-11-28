@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,12 +28,19 @@ html {
     padding-inline: 15px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
 
 .karla {
     font-family: "Karla", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100dvh;
+    background-color: var(--green200);
 }
 
 @media (min-width: 769px) {
@@ -51,4 +59,16 @@ html {
     .container {
         width: 1170px;
     }
+}
+
+div > h1:first-of-type {
+    color: var(--grey900);
+}
+
+#root {
+    width: 100vw;
+}
+
+label span {
+    color: var(--green600);
 }
