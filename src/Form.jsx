@@ -5,17 +5,21 @@ export function Form() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm()
+
   const onSubmit = (data) => {
     console.log(data)
   }
 
+  const enquiry = watch("enquiry")
+  // console.log(enquiry)
+
   return (
-    <div className="contact-us karla rounded-xl p-7 bg-white m-4 w-80 lg:w-2/5 mx-auto">
+    <div className="contact-us karla rounded-xl p-7 lg:p-10 bg-white m-4 w-80 lg:w-2/5 mx-auto shadow-2xl">
       <h1 className=" text-3xl font-bold mb-7">Contact Us</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-
         <div className="flex lg:gap-4 max-lg:flex-wrap">
           <div className="first-name basis-full lg:basis-2/4 mb-7">
             <label htmlFor="first-name" className="font-bold text-gray-600">
@@ -23,7 +27,9 @@ export function Form() {
             </label>
             <input
               type="text"
-              {...register("first-name", { required: "This field is required" })}
+              {...register("first-name", {
+                required: "This field is required",
+              })}
               className="rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 transition duration-300"
             />
           </div>
@@ -41,15 +47,70 @@ export function Form() {
         </div>
 
         <div className="email mb-7">
-            <label htmlFor="email" className="font-bold text-gray-600">
-              Email Address <span>*</span>
-            </label>
+          <label htmlFor="email" className="font-bold text-gray-600">
+            Email Address <span>*</span>
+          </label>
+          <input
+            type="email"
+            {...register("email", { required: "This field is required" })}
+            className="rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 transition duration-300"
+          />
+        </div>
+
+        <label className="font-bold text-gray-600">
+          Query Type <span>*</span>
+        </label>
+        <div className="query-type flex lg:gap-4 max-lg:flex-wrap">
+          <label
+            className={`general basis-full lg:basis-2/4 mb-2 lg:mb-7 rounded-lg border-gray-300 cursor-pointer
+            border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 
+            transition duration-300 relative before:content-[''] before:rounded-full before:absolute 
+            before:top-2/4 before:left-4 before:-translate-y-2/4 before:border-2 
+            before:border-slate-300 before:w-5 before:aspect-square before:transition before:duration-300
+            ${
+              enquiry === "general"
+                ? "bg-green-100 border-green-700 before:bg-green-600"
+                : ""
+            }`}
+          >
             <input
-              type="email"
-              {...register("email", { required: "This field is required" })}
-              className="rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 transition duration-300"
+              type="radio"
+              value={"general"}
+              {...register("enquiry", {
+                required: "Please select a query type",
+              })}
+              className="opacity-0"
             />
-          </div>
+            <span className="font-bold text-gray-600 ml-9">
+              General Enquiry
+            </span>
+          </label>
+
+          <label
+            className={`general basis-full lg:basis-2/4 mb-2 lg:mb-7 rounded-lg border-gray-300 cursor-pointer
+            border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 
+            transition duration-300 relative before:content-[''] before:rounded-full before:absolute 
+            before:top-2/4 before:left-4 before:-translate-y-2/4 before:border-2 
+            before:border-slate-300 before:w-5 before:aspect-square before:transition before:duration-300
+           ${
+             enquiry === "support"
+               ? "bg-green-100 border-green-700 before:bg-green-600"
+               : ""
+           }`}
+          >
+            <input
+              type="radio"
+              value={"support"}
+              {...register("enquiry", {
+                required: "Please select a query type",
+              })}
+              className="opacity-0"
+            />
+            <span className="font-bold text-gray-600 ml-9">
+              Support Request
+            </span>
+          </label>
+        </div>
       </form>
     </div>
   )
