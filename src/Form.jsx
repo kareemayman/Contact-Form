@@ -16,7 +16,7 @@ export function Form() {
   // console.log(enquiry)
 
   return (
-    <div className="contact-us karla rounded-xl p-7 lg:p-10 bg-white m-4 w-80 lg:w-2/5 mx-auto shadow-2xl">
+    <div className="contact-us karla rounded-xl p-7 lg:p-14 bg-white m-4 w-80 lg:w-2/5 mx-auto shadow-2xl">
       <h1 className=" text-3xl font-bold mb-7">Contact Us</h1>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -63,9 +63,9 @@ export function Form() {
         <div className="query-type flex lg:gap-4 max-lg:flex-wrap">
           <label
             className={`general basis-full lg:basis-2/4 mb-2 lg:mb-7 rounded-lg border-gray-300 cursor-pointer
-            border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 
+            border-2 p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 
             transition duration-300 relative before:content-[''] before:rounded-full before:absolute 
-            before:top-2/4 before:left-4 before:-translate-y-2/4 before:border-2 
+            before:top-2/4 before:left-4 before:-translate-y-2/4 before:border-2 flex items-center
             before:border-slate-300 before:w-5 before:aspect-square before:transition before:duration-300
             ${
               enquiry === "general"
@@ -88,9 +88,9 @@ export function Form() {
 
           <label
             className={`general basis-full lg:basis-2/4 mb-2 lg:mb-7 rounded-lg border-gray-300 cursor-pointer
-            border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 
+            border-2 p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 
             transition duration-300 relative before:content-[''] before:rounded-full before:absolute 
-            before:top-2/4 before:left-4 before:-translate-y-2/4 before:border-2 
+            before:top-2/4 before:left-4 before:-translate-y-2/4 before:border-2 flex items-center
             before:border-slate-300 before:w-5 before:aspect-square before:transition before:duration-300
            ${
              enquiry === "support"
@@ -110,6 +110,18 @@ export function Form() {
               Support Request
             </span>
           </label>
+        </div>
+
+        <div className="message mb-7">
+          <label htmlFor="message" className="font-bold text-gray-600">
+            Message <span>*</span>
+          </label>
+          <textarea
+            {...register("message", { required: "This field is required" })}
+            id="message"
+            className="rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 hover:border-green-700 
+            focus:outline-green-700 transition duration-300 resize-none h-32 max-lg:h-48"
+          ></textarea>
         </div>
       </form>
     </div>
