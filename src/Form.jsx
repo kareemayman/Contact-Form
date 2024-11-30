@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form"
+import checkedBox from "../assets/images/icon-checkbox-check.svg"
 
 export function Form() {
   const {
@@ -14,6 +15,7 @@ export function Form() {
 
   const enquiry = watch("enquiry")
   // console.log(enquiry)
+  const consent = watch("consent")
 
   return (
     <div className="contact-us karla rounded-xl p-7 lg:p-14 bg-white m-4 w-80 lg:w-2/5 mx-auto shadow-2xl">
@@ -123,6 +125,34 @@ export function Form() {
             focus:outline-green-700 transition duration-300 resize-none h-32 max-lg:h-48"
           ></textarea>
         </div>
+
+        <label className="consent group flex items-center gap-3 cursor-pointer">
+          <div
+            className={`checkbox border-gray-400 border-2 w-6 lg:w-4 aspect-square transition-all duration-300 
+               group-hover:border-green-700 group-focus:outline-green-700 relative 
+               ${consent && "border-0"}`}
+          >
+            <input
+              type="checkbox"
+              {...register("consent", {
+                required:
+                  "To submit this form, please consent to being contacted",
+              })}
+              id="consent"
+              className="absolute opacity-0"
+            />
+            <img
+              src={checkedBox}
+              alt="checked box"
+              className={`opacity-0 w-full h-full ${
+                consent && "opacity-100"
+              } transition duration-300`}
+            />
+          </div>
+          <span className="font-bold text-gray-600">
+            I consent to being contacted by the team <span>*</span>
+          </span>
+        </label>
       </form>
     </div>
   )
