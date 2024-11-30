@@ -54,3 +54,7 @@ div > h1:first-of-type {
 label span {
     color: var(--green600);
 }
+
+input[type='submit'] {
+    background-color: var(--green600);
+}

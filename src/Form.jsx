@@ -153,6 +153,10 @@ export function Form() {
             I consent to being contacted by the team <span>*</span>
           </span>
         </label>
+
+        <input type="submit" className="flex justify-center content-center rounded-lg 
+        border-none outline-none py-3 w-full mt-7 cursor-pointer font-bold text-white hover:bg-emerald-800
+        transition-all duration-300" />
       </form>
     </div>
   )
