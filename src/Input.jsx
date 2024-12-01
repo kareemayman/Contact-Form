@@ -1,4 +1,4 @@
-export function Input({ name, label, type, errorMessage, register, watch, errors }) {
+export function Input({ name, label, type, errorMessage, register, errors }) {
   return (
     <>
       <label htmlFor={name} className="font-bold text-gray-600">
