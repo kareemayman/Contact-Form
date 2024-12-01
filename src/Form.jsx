@@ -18,6 +18,7 @@ export function Form() {
   const enquiry = watch("enquiry")
   // console.log(enquiry)
   const consent = watch("consent")
+  // console.log(consent)
 
   console.log(errors)
 
@@ -67,20 +68,24 @@ export function Form() {
         <label className="font-bold text-gray-600">
           Query Type <span>*</span>
         </label>
-        <div className="query-type flex lg:gap-4 max-lg:flex-wrap">
-          <Query
-            enquiry={enquiry}
-            label="General Enquiry"
-            register={register}
-            value="general"
-          ></Query>
-
-          <Query
-            enquiry={enquiry}
-            label="Support Request"
-            register={register}
-            value="support"
-          ></Query>
+        <div className="query-typ mb-2 lg:mb-7">
+          <div className="flex lg:gap-4 max-lg:flex-wrap">
+            <Query
+              enquiry={enquiry}
+              label="General Enquiry"
+              register={register}
+              value="general"
+            ></Query>
+            <Query
+              enquiry={enquiry}
+              label="Support Request"
+              register={register}
+              value="support"
+            ></Query>
+          </div>
+          <label className="text-sm text-rose-500 font-medium block mt-2">
+            {errors.enquiry?.message}
+          </label>
         </div>
 
         <div className="message mb-7">
@@ -90,37 +95,48 @@ export function Form() {
           <textarea
             {...register("message", { required: "This field is required" })}
             id="message"
-            className="rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 hover:border-green-700 
-            focus:outline-green-700 transition duration-300 resize-none h-32 max-lg:h-48"
+            className={`rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 
+              transition duration-300 resize-none h-32 max-lg:h-48 ${
+                errors.message
+                  ? "border-rose-500"
+                  : "hover:border-green-700 focus:outline-green-700"
+              }`}
           ></textarea>
+          <label className="text-sm text-rose-500 font-medium block mt-2">
+            {errors.message?.message}
+          </label>
         </div>
 
-        <label className="consent group flex items-center gap-3 cursor-pointer">
-          <div
-            className={`checkbox border-gray-400 border-2 w-6 lg:w-4 aspect-square transition-all duration-300 
-               group-hover:border-green-700 group-focus:outline-green-700 relative 
-               ${consent && "border-0"}`}
-          >
-            <input
-              type="checkbox"
-              {...register("consent", {
-                required:
-                  "To submit this form, please consent to being contacted",
-              })}
-              id="consent"
-              className="absolute opacity-0"
-            />
-            <img
-              src={checkedBox}
-              alt="checked box"
-              className={`opacity-0 w-full h-full ${
-                consent && "opacity-100"
-              } transition duration-300`}
-            />
+        <label className="consent">
+          <div className="group flex items-center gap-3 cursor-pointer">
+            <div
+              className={`checkbox border-gray-400 border-2 w-6 lg:w-4 aspect-square transition-all duration-300
+                 group-hover:border-green-700 group-focus:outline-green-700 relative ${consent && "border-none" }`}
+            >
+              <input
+                type="checkbox"
+                {...register("consent", {
+                  required:
+                    "To submit this form, please consent to being contacted",
+                })}
+                id="consent"
+                className="absolute opacity-0"
+              />
+              <img
+                src={checkedBox}
+                alt="checked box"
+                className={`opacity-0 w-full h-full ${
+                  consent && "opacity-100"
+                } transition duration-300`}
+              />
+            </div>
+            <span className="font-bold text-gray-600">
+              I consent to being contacted by the team <span>*</span>
+            </span>
           </div>
-          <span className="font-bold text-gray-600">
-            I consent to being contacted by the team <span>*</span>
-          </span>
+          <label className="text-sm text-rose-500 font-medium block mt-2">
+            {errors.consent?.message}
+          </label>
         </label>
 
         <input
