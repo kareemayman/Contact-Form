@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
 import checkedBox from "../assets/images/icon-checkbox-check.svg"
+import { Input } from "./Input"
 
 export function Form() {
   const {
@@ -17,6 +18,8 @@ export function Form() {
   // console.log(enquiry)
   const consent = watch("consent")
 
+  console.log(errors)
+
   return (
     <div className="contact-us karla rounded-xl p-7 lg:p-14 bg-white m-4 w-80 lg:w-2/5 mx-auto shadow-2xl">
       <h1 className=" text-3xl font-bold mb-7">Contact Us</h1>
@@ -24,39 +27,40 @@ export function Form() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex lg:gap-4 max-lg:flex-wrap">
           <div className="first-name basis-full lg:basis-2/4 mb-7">
-            <label htmlFor="first-name" className="font-bold text-gray-600">
-              First Name <span>*</span>
-            </label>
-            <input
+            <Input
               type="text"
-              {...register("first-name", {
-                required: "This field is required",
-              })}
-              className="rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 transition duration-300"
-            />
+              name="first-name"
+              label="First Name"
+              errorMessage="This field is required"
+              register={register}
+              watch={watch}
+              errors={errors}
+            ></Input>
           </div>
 
           <div className="last-name basis-full lg:basis-2/4 mb-7">
-            <label htmlFor="last-name" className="font-bold text-gray-600">
-              Last Name <span>*</span>
-            </label>
-            <input
+            <Input
               type="text"
-              {...register("last-name", { required: "This field is required" })}
-              className="rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 transition duration-300"
-            />
+              name="last-name"
+              label="Last Name"
+              errorMessage="This field is required"
+              register={register}
+              watch={watch}
+              errors={errors}
+            ></Input>
           </div>
         </div>
 
         <div className="email mb-7">
-          <label htmlFor="email" className="font-bold text-gray-600">
-            Email Address <span>*</span>
-          </label>
-          <input
-            type="email"
-            {...register("email", { required: "This field is required" })}
-            className="rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 hover:border-green-700 focus:outline-green-700 transition duration-300"
-          />
+        <Input
+              type="email"
+              name="email"
+              label="Email Address"
+              errorMessage="This field is required"
+              register={register}
+              watch={watch}
+              errors={errors}
+            ></Input>
         </div>
 
         <label className="font-bold text-gray-600">
@@ -154,9 +158,12 @@ export function Form() {
           </span>
         </label>
 
-        <input type="submit" className="flex justify-center content-center rounded-lg 
+        <input
+          type="submit"
+          className="flex justify-center content-center rounded-lg 
         border-none outline-none py-3 w-full mt-7 cursor-pointer font-bold text-white hover:bg-emerald-800
-        transition-all duration-300" />
+        transition-all duration-300"
+        />
       </form>
     </div>
   )
