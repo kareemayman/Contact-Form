@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form"
 import checkedBox from "../assets/images/icon-checkbox-check.svg"
 import { Input } from "./Input"
 import { Query } from "./Query"
+import { useEffect } from "react"
+import { Message } from "./Message"
 
 export function Form() {
   const {
@@ -9,11 +11,16 @@ export function Form() {
     handleSubmit,
     formState: { errors },
     watch,
+    setFocus,
   } = useForm()
 
   const onSubmit = (data) => {
     console.log(data)
   }
+
+  useEffect(() => {
+    setFocus("first-name")
+  }, [setFocus])
 
   const enquiry = watch("enquiry")
   // console.log(enquiry)
@@ -89,29 +96,22 @@ export function Form() {
         </div>
 
         <div className="message mb-7">
-          <label htmlFor="message" className="font-bold text-gray-600">
-            Message <span>*</span>
-          </label>
-          <textarea
-            {...register("message", { required: "This field is required" })}
-            id="message"
-            className={`rounded-lg border-gray-300 border-2 block p-3 w-full mt-2 
-              transition duration-300 resize-none h-32 max-lg:h-48 ${
-                errors.message
-                  ? "border-rose-500"
-                  : "hover:border-green-700 focus:outline-green-700"
-              }`}
-          ></textarea>
-          <label className="text-sm text-rose-500 font-medium block mt-2">
-            {errors.message?.message}
-          </label>
+          <Message
+            name={"message"}
+            errorMessage="This field is required"
+            label="Message"
+            register={register}
+            errors={errors}
+          ></Message>
         </div>
 
         <label className="consent">
           <div className="group flex items-center gap-3 cursor-pointer">
             <div
               className={`checkbox border-gray-400 border-2 w-6 lg:w-4 aspect-square transition-all duration-300
-                 group-hover:border-green-700 group-focus:outline-green-700 relative ${consent && "border-none" }`}
+                 group-hover:border-green-700 group-focus:outline-green-700 relative ${
+                   consent && "border-none"
+                 }`}
             >
               <input
                 type="checkbox"
