@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import checkedBox from "../assets/images/icon-checkbox-check.svg"
 import { Input } from "./Input"
 import { Query } from "./Query"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Message } from "./Message"
 import { Success } from "./Success"
 
@@ -13,10 +13,18 @@ export function Form() {
     formState: { errors },
     watch,
     setFocus,
+    reset,
   } = useForm()
+
+  const [successState, changeSuccessState] = useState(false)
 
   const onSubmit = (data) => {
     console.log(data)
+    reset()
+    changeSuccessState(true)
+    setTimeout(() => {
+      changeSuccessState(false)
+    }, 4000);
   }
 
   useEffect(() => {
@@ -24,15 +32,13 @@ export function Form() {
   }, [setFocus])
 
   const enquiry = watch("enquiry")
-  // console.log(enquiry)
   const consent = watch("consent")
-  // console.log(consent)
 
-  console.log(errors)
+  // console.log(errors)
 
   return (
     <>
-      <Success></Success>
+      <Success successState={successState}></Success>
       <div className="contact-us karla rounded-xl p-7 lg:p-14 bg-white m-4 w-80 lg:w-2/5 mx-auto shadow-2xl">
         <h1 className=" text-3xl font-bold mb-7">Contact Us</h1>
 
