@@ -1,4 +1,12 @@
-export function Input({ name, label, type, errorMessage, register, errors }) {
+export function Input({
+  name,
+  label,
+  type,
+  errorMessage,
+  register,
+  errors,
+  patternValue = "",
+}) {
   return (
     <>
       <label htmlFor={name} className="font-bold text-gray-600">
@@ -8,6 +16,10 @@ export function Input({ name, label, type, errorMessage, register, errors }) {
         type={type}
         {...register(name, {
           required: errorMessage,
+          pattern: {
+            value: patternValue,
+            message: "Invalid email address",
+          },
         })}
         className={`rounded-lg border-gray-300 border-2 block p-3 w-full mt-2  
         transition duration-300 ${

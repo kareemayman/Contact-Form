@@ -78,6 +78,7 @@ export function Form() {
               register={register}
               watch={watch}
               errors={errors}
+              patternValue={/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/}
             ></Input>
           </div>
 
