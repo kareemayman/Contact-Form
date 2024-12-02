@@ -3,7 +3,7 @@ import successCheck from "../assets/images/icon-success-check.svg"
 export function Success({ successState }) {
   return (
     <div
-      className={`karla h-24 rounded-xl absolute left-1/2 -translate-x-2/4 bg-sky-950 shadow-2xl
+      className={`karla rounded-xl absolute left-1/2 -translate-x-2/4 bg-sky-950 shadow-2xl
         text-white p-6 transition-all duration-700 flex flex-col justify-center gap-2 ${
           successState ? "top-4" : "-top-full"
         }`}

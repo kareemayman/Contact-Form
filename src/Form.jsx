@@ -22,9 +22,13 @@ export function Form() {
     console.log(data)
     reset()
     changeSuccessState(true)
+    scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
     setTimeout(() => {
       changeSuccessState(false)
-    }, 4000);
+    }, 4000)
   }
 
   useEffect(() => {
