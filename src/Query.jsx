@@ -6,6 +6,7 @@ export function Query({ enquiry, value, register, label }) {
         transition duration-300 relative before:content-[''] before:rounded-full before:absolute 
         before:top-2/4 before:left-4 before:-translate-y-2/4 before:border-2 flex items-center
         before:border-slate-300 before:w-5 before:aspect-square before:transition before:duration-300
+        has-[:focus-visible]:border-green-700
         ${
           enquiry === value
             ? "bg-green-100 border-green-700 before:bg-green-600"

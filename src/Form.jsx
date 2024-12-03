@@ -14,7 +14,11 @@ export function Form() {
     watch,
     setFocus,
     reset,
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      consent: false,
+    },
+  })
 
   const [successState, changeSuccessState] = useState(false)
 
@@ -123,7 +127,8 @@ export function Form() {
             <div className="group flex items-center gap-3 cursor-pointer">
               <div
                 className={`checkbox border-gray-400 border-2 w-6 lg:w-4 aspect-square transition-all duration-300
-                 group-hover:border-green-700 group-focus:outline-green-700 relative ${
+                 group-hover:border-green-700 group-focus:outline-green-700 relative has-[:focus-visible]:border-green-700
+                  ${
                    consent && "border-none"
                  }`}
               >
